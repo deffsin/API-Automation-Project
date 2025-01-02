@@ -1,0 +1,3 @@
+ERROR (2025-01-02 17:55:28): Unexpected status code: 200 [test_get_single_product.py]
+ERROR (2025-01-02 17:55:28): Request URL: https://fakestoreapi.com/products/1 [test_get_single_product.py]
+ERROR (2025-01-02 17:55:28): Response Body: {"id":1,"title":"Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops","price":109.95,"description":"Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday","category":"men's clothing","image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg","rating":{"rate":3.9,"count":120}} [test_get_single_product.py]
