@@ -11,3 +11,8 @@ class APIClient:
         response = self.session.get(url)
         print(f"Request URL: {url}, Response Status: {response.status_code}, Response Body: {response.text}")
         return response
+
+    def get_single_product(self):
+        url = f"{self.base_url}/products/1"
+        response = self.session.get(url)
+        return response
