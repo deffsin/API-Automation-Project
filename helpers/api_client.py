@@ -16,3 +16,9 @@ class APIClient:
         url = f"{self.base_url}/products/1"
         response = self.session.get(url)
         return response
+
+    def get_limit_results(self, number):
+        url = f"{self.base_url}/products?limit={number}"
+        response = self.session.get(url)
+        print(f"Request URL: {url}, Response Status: {response.status_code}, Response Body: {response.text}")
+        return response
