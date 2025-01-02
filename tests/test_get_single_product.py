@@ -1,7 +1,7 @@
 import pytest
 from helpers.api_client import APIClient
 from config.logging_config import logger
-
+from helpers.validate_response import validate_response
 
 @pytest.fixture
 def api_client():
@@ -10,15 +10,7 @@ def api_client():
 def test_get_single_product(api_client):
     response = api_client.get_single_product()
 
-    if response.status_code != 200:
-        logger.error(f"Unexpected status code: {response.status_code}")
-        logger.error(f"Request URL: {response.url}")
-        logger.error(f"Response Body: {response.text}")
-        pytest.fail(f"Test failed due to unexpected status code: {response.status_code}")
-
-    assert response.status_code == 200, f"Unexpected status code: {response.status_code}"
-
-    product = response.json()
+    product = validate_response(response)
 
     assert isinstance(product, dict), "Response should be a dictionary"
     assert "id" in product, "Product ID is missing"

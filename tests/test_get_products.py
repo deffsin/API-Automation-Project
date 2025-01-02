@@ -1,5 +1,6 @@
 import pytest
 from helpers.api_client import APIClient
+from helpers.validate_response import validate_response
 
 @pytest.fixture
 def api_client():
@@ -8,15 +9,7 @@ def api_client():
 def test_get_products(api_client):
     response = api_client.get_products()
 
-    if response.status_code != 200:
-        print(f"Unexpected status code: {response.status_code}")
-        print(f"Request URL: {response.url}")
-        print(f"Response Body: {response.text}")
-        pytest.fail(f"Test failed due to unexpected status code: {response.status_code}")
-
-    assert response.status_code == 200, f"Unexpected status code: {response.status_code}"
-
-    products = response.json()
+    products = validate_response(response)
 
     assert isinstance(products, list), "Response should be a list"
     assert len(products) > 0, "Products list is empty"
