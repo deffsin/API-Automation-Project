@@ -8,9 +8,10 @@ def api_client():
     return APIClient()
 
 def test_get_single_product(api_client):
-    product = get_single_product(api_client)
+    product = get_single_product(api_client, 2)
 
     assert isinstance(product, dict), "Response should be a dictionary"
+
     assert "id" in product, "Product ID is missing"
     assert "title" in product, "Product title is missing"
     assert "price" in product, "Product price is missing"

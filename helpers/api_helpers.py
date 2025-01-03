@@ -4,8 +4,8 @@ def get_products(api_client):
     response = api_client.get_products()
     return validate_response(response)
 
-def get_single_product(api_client):
-    response = api_client.get_single_product()
+def get_single_product(api_client, id):
+    response = api_client.get_single_product(id)
     return validate_response(response)
 
 def get_limit_results(api_client, value):
