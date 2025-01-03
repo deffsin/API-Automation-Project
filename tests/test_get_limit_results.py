@@ -1,16 +1,14 @@
 import pytest
 from helpers.api_client import APIClient
+from helpers.api_helpers import get_limit_results
 from config.logging_config import logger
-from helpers.validate_response import validate_response
 
 @pytest.fixture
 def api_client():
     return APIClient()
 
 def test_get_limit_results(api_client):
-    response = api_client.get_limit_results(number=2)
-
-    products = validate_response(response)
+    products = get_limit_results(api_client, value=2)
 
     assert isinstance(products, list), "Response should be a list"
     assert 1 <= len(products) <= 5, "Products list should contain between 1 and 5 items"

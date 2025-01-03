@@ -1,16 +1,14 @@
 import pytest
 from helpers.api_client import APIClient
 from config.logging_config import logger
-from helpers.validate_response import validate_response
+from helpers.api_helpers import get_sort_results
 
 @pytest.fixture
 def api_client():
     return APIClient()
 
-def test_sort_results(api_client):
-    response = api_client.sort_results(value="asc")
-
-    products = validate_response(response)
+def test_get_sort_results(api_client):
+    products = get_sort_results(api_client, value="asc")
 
     assert isinstance(products, list), "Response should be a list"
     assert len(products) > 0, "Products list is empty"

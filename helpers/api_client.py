@@ -1,5 +1,3 @@
-from http.client import responses
-
 import requests
 from config.settings import BASE_URL
 
@@ -20,8 +18,8 @@ class APIClient:
         print(f"Request URL: {url}, Response Status: {response.status_code}")
         return response
 
-    def get_limit_results(self, number):
-        url = f"{self.base_url}/products?limit={number}"
+    def get_limit_results(self, value):
+        url = f"{self.base_url}/products?limit={value}"
         response = self.session.get(url)
         print(f"Request URL: {url}, Response Status: {response.status_code}")
         return response

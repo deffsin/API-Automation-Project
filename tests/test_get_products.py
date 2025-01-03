@@ -1,6 +1,6 @@
 import pytest
 from helpers.api_client import APIClient
-from helpers.validate_response import validate_response
+from helpers.api_helpers import get_products
 from config.logging_config import logger
 
 @pytest.fixture
@@ -8,9 +8,7 @@ def api_client():
     return APIClient()
 
 def test_get_products(api_client):
-    response = api_client.get_products()
-
-    products = validate_response(response)
+    products = get_products(api_client)
 
     assert isinstance(products, list), "Response should be a list"
     assert len(products) > 0, "Products list is empty"
