@@ -1,6 +1,7 @@
 import pytest
 from helpers.api_client import APIClient
 from helpers.api_helpers import get_single_product
+from helpers.api_helpers import get_products
 from config.logging_config import logger
 
 @pytest.fixture
@@ -8,9 +9,11 @@ def api_client():
     return APIClient()
 
 def test_get_single_product(api_client):
+    products = get_products(api_client)
     product = get_single_product(api_client, 2)
 
     assert isinstance(product, dict), "Response should be a dictionary"
+    assert product in products, "The product isn't found in the list"
 
     assert "id" in product, "Product ID is missing"
     assert "title" in product, "Product title is missing"
