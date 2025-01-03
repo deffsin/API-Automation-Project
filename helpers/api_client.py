@@ -29,3 +29,9 @@ class APIClient:
         response = self.session.get(url)
         print(f"Request URL: {url}, Response Status: {response.status_code}")
         return response
+
+    def get_all_categories(self):
+        url = f"{self.base_url}/products/categories"
+        response = self.session.get(url)
+        print(f"Request URL: {url}, Response Status: {response.status_code}")
+        return response

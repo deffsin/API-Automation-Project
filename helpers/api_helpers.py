@@ -15,3 +15,7 @@ def get_limit_results(api_client, value):
 def get_sort_results(api_client, value):
     response = api_client.sort_results(value)
     return validate_response(response)
+
+def get_all_categories(api_client):
+    response = api_client.get_all_categories()
+    return validate_response(response)
