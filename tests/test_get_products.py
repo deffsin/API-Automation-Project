@@ -1,6 +1,7 @@
 import pytest
 from helpers.api_client import APIClient
 from helpers.validate_response import validate_response
+from config.logging_config import logger
 
 @pytest.fixture
 def api_client():
@@ -14,13 +15,12 @@ def test_get_products(api_client):
     assert isinstance(products, list), "Response should be a list"
     assert len(products) > 0, "Products list is empty"
 
-    first_product = products[0]
-    assert "id" in first_product, "Product ID is missing"
-    assert "title" in first_product, "Product title is missing"
-    assert "price" in first_product, "Product price is missing"
-    assert "category" in first_product, "Product category is missing"
-    assert "description" in first_product, "Product description is missing"
-    assert "image" in first_product, "Product image is missing"
+    for product in products:
+        assert "id" in product, "Product ID is missing"
+        assert "title" in product, "Product title is missing"
+        assert "price" in product, "Product price is missing"
+        assert "category" in product, "Product category is missing"
+        assert "description" in product, "Product description is missing"
+        assert "image" in product, "Product image is missing"
 
-    # output for debugging
-    print("First product:", first_product)
+    logger.info(f"Product data: {products}")
