@@ -8,10 +8,12 @@ def api_client():
     return APIClient()
 
 def test_get_limit_results(api_client):
-    products = get_limit_results(api_client, value=2)
+    limit = 2
+    products = get_limit_results(api_client, value=limit)
 
     assert isinstance(products, list), "Response should be a list"
     assert 1 <= len(products) <= 5, "Products list should contain between 1 and 5 items"
+    assert limit == len(products), f"Expected {limit} products, but got {len(products)}"
 
     for product in products:
         assert "id" in product, "Product ID is missing"
