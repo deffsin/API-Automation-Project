@@ -15,11 +15,23 @@ def test_get_single_product(api_client):
     assert isinstance(product, dict), "Response should be a dictionary"
     assert product in products, "The product isn't found in the list"
 
-    assert "id" in product, "Product ID is missing"
-    assert "title" in product, "Product title is missing"
-    assert "price" in product, "Product price is missing"
-    assert "category" in product, "Product category is missing"
-    assert "description" in product, "Product description is missing"
-    assert "image" in product, "Product image is missing"
+    for product in products:
+        assert "id" in product, "Product ID is missing"
+        assert isinstance(product["id"], int), f"Product ID is not an integer: {product['id']}"
+
+        assert "title" in product, "Product title is missing"
+        assert isinstance(product["title"], str), f"Product title is not a string: {product['title']}"
+
+        assert "price" in product, "Product price is missing"
+        assert isinstance(product["price"], (int, float)), f"Product price is not an integer or float: {product['price']}"
+
+        assert "category" in product, "Product category is missing"
+        assert isinstance(product["category"], str), f"Product price is not a string: {product['category']}"
+
+        assert "description" in product, "Product description is missing"
+        assert isinstance(product["description"], str), f"Product description is not a string: {product['description']}"
+
+        assert "image" in product, "Product image is missing"
+        assert isinstance(product["image"], str), f"Product image is not a string: {product['image']}"
 
     logger.info(f"Product data: {product}")
