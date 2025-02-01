@@ -19,3 +19,7 @@ def get_sort_results(api_client, value):
 def get_all_categories(api_client):
     response = api_client.get_all_categories()
     return validate_response(response)
+
+def get_in_category(api_client, category_name):
+    response = api_client.get_in_category(category_name)
+    return validate_response(response)

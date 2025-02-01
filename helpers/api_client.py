@@ -35,3 +35,9 @@ class APIClient:
         response = self.session.get(url)
         print(f"Request URL: {url}, Response Status: {response.status_code}")
         return response
+
+    def get_in_category(self, category_name):
+        url = f"{self.base_url}/products/category/{category_name}"
+        response = self.session.get(url)
+        print(f"Request URL: {url}, Response Status: {response.status_code}")
+        return response
