@@ -10,7 +10,9 @@ def api_client():
 def test_get_in_category(api_client):
     category_name = "jewelery"
     products = get_in_category(api_client, category_name=category_name)
-    print(type(products))
+
+    assert isinstance(products, list), "Response should be a list"
+    assert isinstance(category_name, str), "Request should be a string"
 
     for product in products:
         assert "id" in product, "Product ID is missing"
